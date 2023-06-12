@@ -1,0 +1,128 @@
+package nopCommerce;
+
+import java.awt.AWTException;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+public class eCommerce_Project {
+
+	public static void main(String[] args) throws InterruptedException, AWTException {
+		
+		ChromeOptions options = new ChromeOptions();
+
+		options.addArguments("--disable-notifications");
+		WebDriver driver = new ChromeDriver(options);
+		driver.get("https://demo.nopcommerce.com/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(3000);
+
+		// Register Functionality
+		driver.findElement(By.xpath("//a[normalize-space()='Register']")).click();
+		driver.findElement(By.id("gender-male")).click();
+		driver.findElement(By.id("FirstName")).sendKeys("SaiLokesh");
+		driver.findElement(By.id("LastName")).sendKeys("Eduru");
+		driver.findElement(By.name("DateOfBirthDay")).click();
+		driver.findElement(By.xpath("//option[normalize-space()='2']")).click();
+		driver.findElement(By.xpath("//option[normalize-space()='June']")).click();
+		driver.findElement(By.xpath("//option[@value='1995']")).click();
+		driver.findElement(By.id("Email")).sendKeys("sailokesh54@gmail.com"); 
+		Thread.sleep(3000);
+		driver.findElement(By.id("Company")).sendKeys("Apple");
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//input[@id='Newsletter']")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.id("Password")).sendKeys("ABC123!@#abc");
+		driver.findElement(By.id("ConfirmPassword")).sendKeys("ABC123!@#abc");
+		driver.findElement(By.name("register-button")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[2]/a")).click();
+		Thread.sleep(3000);
+		// Login Functionality
+		driver.findElement(By.xpath("/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.id("Email")).sendKeys("sailokesh54@gmail.com");
+		driver.findElement(By.id("Password")).sendKeys("ABC123!@#abc");
+		driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[1]/div[2]/form/div[3]/button"))
+				.click();
+	
+		// Selecting Items
+		driver.findElement(By.xpath("/html/body/div[6]/div[2]/ul[1]/li[1]/a")).click();
+		
+		driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div[1]/div[2]/ul/li[1]/ul/li[2]/a")).click();
+		
+		// CPU Type Selection
+		driver.findElement(By.id("attribute-option-6")).click();
+		// Memory Selection
+		driver.findElement(By.id("attribute-option-9")).click();
+		
+		Thread.sleep(2000);
+		// Add to Cart Selection
+		driver.findElement(By.xpath("//button[normalize-space()='Add to cart']")).click();
+	
+		// Shopping Cart
+		driver.findElement(By.xpath("//*[@id=\"topcartlink\"]/a/span[1]")).click();
+	
+
+	
+		// CheckBox Selection
+		driver.findElement(By.xpath("//input[@id='termsofservice']")).click();
+
+		
+		driver.findElement(By.xpath("//button[@id='checkout']")).click();
+
+		// Country Selection
+		 driver.findElement(By.xpath("//*[@id=\"BillingNewAddress_CountryId\"]/option[101]")).click();
+		WebElement search = driver.findElement(By.xpath("//*[@id=\"BillingNewAddress_CountryId\"]"));
+
+		Select obj = new Select(search);
+		obj.selectByValue("133");
+		
+
+		// City Selection
+		driver.findElement(By.xpath("//*[@id=\"BillingNewAddress_City\"]")).sendKeys("Bangalore");
+		// Address Selection
+		driver.findElement(By.xpath("//*[@id=\"BillingNewAddress_Address1\"]"))
+				.sendKeys("Near Petrol Bunk,Yelhanka Old Town");
+		// PinCode Selection
+		driver.findElement(By.xpath("//*[@id=\"BillingNewAddress_ZipPostalCode\"]")).sendKeys("564407");
+		// Phone Number
+		driver.findElement(By.xpath("//*[@id=\"BillingNewAddress_PhoneNumber\"]")).sendKeys("99551197522");
+		
+		// Submit Button Selection
+		driver.findElement(By.xpath("//*[@id=\"billing-buttons-container\"]/button[4]")).click();
+
+	
+
+		driver.findElement(By.xpath("//*[@id=\"shipping-method-buttons-container\"]/button")).click();
+		
+		// Payment Method Selection
+		driver.findElement(By.xpath("//*[@id=\"payment-method-buttons-container\"]/button")).click();
+
+
+		// Payment Information Selection
+
+		driver.findElement(By.xpath("//*[@id=\"payment-info-buttons-container\"]/button")).click();
+
+		
+		// Confirm Order Selection
+		driver.findElement(By.xpath("//*[@id=\"confirm-order-buttons-container\"]/button")).click();
+
+	//Logot_Functionality
+	driver.findElement(By.xpath("/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a")).click();	//driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div/div[2]/div[2]/a")).click();
+		
+
+		//driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[1]/a[1]")).click();
+		
+		driver.close();
+		//driver.quit();
+
+	}
+
+}
